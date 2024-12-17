@@ -32,8 +32,8 @@ This project implements a log parser for the Quake 3 Arena server, grouping matc
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/quake-log-parser.git
-   cd quake-log-parser
+   git clone https://github.com/Raissa-Reis-Lopes/quake_parser_ts.git
+   cd quake_parser_ts
    ```
 
 2. Install dependencies:
@@ -65,7 +65,7 @@ quake-log-parser/
 │   ├── report.ts              # Report generation
 │   ├── main.ts                # Main entry point
 ├── package.json               # Project dependency manager
-├── tsconfig.json              
+├── tsconfig.json              # TypeScript compiler configuration
 └── README.md                  # Project documentation
 ```
 
@@ -201,8 +201,8 @@ Este projeto implementa um parser de logs do servidor Quake 3 Arena, agrupando d
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/quake-log-parser.git
-   cd quake-log-parser
+   git clone https://github.com/Raissa-Reis-Lopes/quake_parser_ts.git
+   cd quake_parser_ts
    ```
 
 2. Instale as dependências:
@@ -228,14 +228,14 @@ O menu interativo será exibido no terminal, permitindo escolher qual relatório
 ```bash
 quake-log-parser/
 ├── logs/
-│   └── qgames.log             # Arquivo de log do Quake 3 Arena
+│   └── qgames.log            # Arquivo de log do Quake 3 Arena
 ├── src/
-│   ├── parser.ts              # Parser do log (coleta e organiza os dados)
-│   ├── report.ts              # Geração dos relatórios
+│   ├── parser.ts             # Parser do log (coleta e organiza os dados)
+│   ├── report.ts             # Geração dos relatórios
 │   ├── main.ts               # Ponto de entrada principal
-├── package.json               # Gerenciador de dependências do projeto
-├── tsconfig.json              
-└── README.md                  # Documentação do projeto
+├── package.json              # Gerenciador de dependências do projeto
+├── tsconfig.json             # Configuração do compilador TypeScript 
+└── README.md                 # Documentação do projeto
 ```
 
 ---
