@@ -9,7 +9,13 @@ interface Game {
 
 export function parseLog(filePath: string): Record<string, Game> {
     const games: Record<string, Game> = {};
-    let currentGame: Game | null = null;
+    let currentGame: {
+        totalKills: number;
+        players: Set<string>;
+        kills: Record<string, number>;
+        killsByMeans: Record<string, number>;
+    } | null = null;
+
     let gameNumber = 0;
 
     const data = fs.readFileSync(filePath, 'utf-8');
@@ -18,12 +24,16 @@ export function parseLog(filePath: string): Record<string, Game> {
     for (const line of lines) {
         if (line.includes('InitGame')) {
             if (currentGame) {
-                games[`game_${gameNumber}`] = currentGame;
+                games[`game_${gameNumber}`] = {
+                    ...currentGame,
+                    players: Array.from(currentGame.players) // Converte Set para array ao salvar
+                };
             }
+
             gameNumber++;
             currentGame = {
                 totalKills: 0,
-                players: [],
+                players: new Set(),
                 kills: {},
                 killsByMeans: {}
             };
@@ -40,16 +50,19 @@ export function parseLog(filePath: string): Record<string, Game> {
                     currentGame!.kills[victim] = (currentGame!.kills[victim] || 0) - 1;
                 } else {
                     currentGame!.kills[killer] = (currentGame!.kills[killer] || 0) + 1;
-                    currentGame!.players.push(killer);
+                    currentGame!.players.add(killer);
                 }
-                currentGame!.players.push(victim);
+                currentGame!.players.add(victim);
                 currentGame!.killsByMeans[deathCause] = (currentGame!.killsByMeans[deathCause] || 0) + 1;
             }
         }
     }
 
     if (currentGame) {
-        games[`game_${gameNumber}`] = currentGame;
+        games[`game_${gameNumber}`] = {
+            ...currentGame,
+            players: Array.from(currentGame.players)
+        };
     }
 
     return games;

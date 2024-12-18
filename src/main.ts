@@ -67,7 +67,7 @@ function reportGamesSortedByKills(): void {
 function main(): void {
     while (true) {
         printMenu();
-        const choice = readlineSync.question('Escolha uma opção: ');
+        const choice = readlineSync.question(`Escolha uma opção: `);
 
         switch (choice) {
             case '1':
